@@ -1,26 +1,26 @@
 package com.example.config;
 
 import com.google.common.collect.ArrayListMultimap;
-
-import java.util.List;
+import com.google.common.collect.HashBasedTable;
+import com.google.common.collect.Multimap;
+import com.google.common.collect.Table;
 
 public class LocalCache {
 
-    private static ArrayListMultimap multimap = ArrayListMultimap.create();
+    /**
+     * 内存方式存储服务名称和服务实例
+     * key:serviceName, value:serviceInstance
+     *
+     */
+    public static Multimap<String, String> appCache = ArrayListMultimap.create();
 
-    public static void put(String key, Object value) {
-        multimap.put(key, value);
-    }
+    /**
+     * 指标开关,0:Off 1:On
+     */
+    public static Table<String, String, Integer> metricsCache = HashBasedTable.create();
 
-    public static List<Object> get(String key) {
-        return multimap.get(key);
-    }
-
-    public static boolean remove(String key, Object value) {
-        return multimap.remove(key, value);
-    }
-
-    public static void removeAll(String key) {
-        multimap.removeAll(key);
+    static {
+        metricsCache.put(MetricsTags.SYSTEM_CPU_COUNT, Metrics.getDesc(MetricsTags.SYSTEM_CPU_COUNT), 0);
+        metricsCache.put(MetricsTags.SYSTEM_CPU_USAGE, Metrics.getDesc(MetricsTags.SYSTEM_CPU_USAGE), 0);
     }
 }
