@@ -7,21 +7,9 @@ public interface MetricsTags {
      */
     String JVM_MEMORY_MAX = "jvm.memory.max";
     /**
-     * GC时，老年代分配的内存空间
-     */
-    String JVM_GC_MEMORY_PROMOTED = "jvm.gc.memory.promoted";
-    /**
-     * 	JVM已用内存
+     * JVM已用内存
      */
     String JVM_MEMORY_USED = "jvm.memory.used";
-    /**
-     * GC时，老年代的最大内存空间
-     */
-    String JVM_GC_MAX_DATA_SIZE = "jvm.gc.max.data.size";
-    /**
-     * GC耗时
-     */
-    String JVM_GC_PAUSE = "jvm.gc.pause";
     /**
      * JVM可用内存
      */
@@ -35,19 +23,31 @@ public interface MetricsTags {
      */
     String JVM_THREADS_DAEMON = "jvm.threads.daemon";
     /**
-     * GC时，年轻代分配的内存空间
-     */
-    String JVM_GC_MEMORY_ALLOCATED = "jvm.gc.memory.allocated";
-    /**
      * JVM当前活跃线程数
      */
     String JVM_THREADS_LIVE = "jvm.threads.live";
     /**
-     * 	JVM峰值线程数
+     * JVM峰值线程数
      */
     String JVM_THREADS_PEAK = "jvm.threads.peak";
     /**
-     * 	加载classes数
+     * GC时，老年代分配的内存空间
+     */
+    String JVM_GC_MEMORY_PROMOTED = "jvm.gc.memory.promoted";
+    /**
+     * GC时，老年代的最大内存空间
+     */
+    String JVM_GC_MAX_DATA_SIZE = "jvm.gc.max.data.size";
+    /**
+     * GC耗时
+     */
+    String JVM_GC_PAUSE = "jvm.gc.pause";
+    /**
+     * GC时，年轻代分配的内存空间
+     */
+    String JVM_GC_MEMORY_ALLOCATED = "jvm.gc.memory.allocated";
+    /**
+     * 加载classes数
      */
     String JVM_CLASSES_LOADED = "jvm.classes.loaded";
     /**
@@ -55,18 +55,21 @@ public interface MetricsTags {
      */
     String JVM_CLASSES_UNLOADED = "jvm.classes.unloaded";
     /**
-     * 	FullGC时，老年代的内存空间
+     * FullGC时，老年代的内存空间
      */
     String JVM_GC_LIVE_DATA_SIZE = "jvm.gc.live.data.size";
     /**
      * 当前缓冲区数
      */
     String JVM_BUFFER_COUNT = "jvm.buffer.count";
-
+    /**
+     * JVM线程状态
+     */
     String JVM_THREADS_STATES = "jvm.threads.states";
-
+    /**
+     * 缓冲区总容量
+     */
     String JVM_BUFFER_TOTAL_CAPACITY = "jvm.buffer.total.capacity";
-
     /**
      * CPU数量
      */

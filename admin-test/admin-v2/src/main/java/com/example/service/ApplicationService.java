@@ -19,8 +19,10 @@ public class ApplicationService {
 
     /**
      * 每30s从eureka同步application信息
+     * fixedRate 上一次开始执行时间点之后n秒再执行
+     * fixedDelay 上一次执行完毕时间点之后n秒再执行
      */
-    @Scheduled(fixedRate = 30 * 1000)
+    @Scheduled(fixedDelay = 30 * 1000)
     public void syncApplications() {
         List<String> serviceNames = discoveryClient.getServices();
         for (String serviceName : serviceNames) {
