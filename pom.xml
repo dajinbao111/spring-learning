@@ -8,6 +8,8 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>admin-server</module>
+        <module>admin-test</module>
         <module>eureka-server</module>
         <module>zuul-test</module>
         <module>gateway-test</module>

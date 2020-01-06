@@ -8,15 +8,15 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
 @Component
-public class SignFilter implements GlobalFilter, Ordered {
+public class PreGatewayFilterFactory implements GlobalFilter, Ordered {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-        System.out.println("SignFilter");
+        System.out.println("PreGatewayFilterFactory");
         return chain.filter(exchange);
     }
 
     @Override
     public int getOrder() {
-        return 3;
+        return 0;
     }
 }
