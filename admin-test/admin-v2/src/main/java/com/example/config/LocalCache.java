@@ -26,5 +26,9 @@ public class LocalCache {
     /**
      * 设置
      */
-    public static Map<String, String> settingCache = Maps.newHashMap();
+    public static Map<String, Long> settingCache = Maps.newHashMap();
+
+    static {
+        settingCache.put("periodic", 30L);
+    }
 }
