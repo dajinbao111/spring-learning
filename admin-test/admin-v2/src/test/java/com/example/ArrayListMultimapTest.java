@@ -2,7 +2,10 @@ package com.example;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
+import com.google.common.collect.Multiset;
 import org.junit.Test;
+
+import java.util.Set;
 
 public class ArrayListMultimapTest {
 
@@ -15,6 +18,11 @@ public class ArrayListMultimapTest {
         multimap.put("tom", "C");
         multimap.put("tom", "D");
         System.out.println(multimap.entries());
+
+        Multiset multiset = multimap.keys();
+        System.out.println(multiset);
+        Set<String> set = multimap.keySet();
+        System.out.println(set);
 
         multimap.removeAll("tom");
         System.out.println(multimap.entries());

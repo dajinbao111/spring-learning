@@ -1,34 +1,73 @@
 package com.example.config;
 
-import com.google.common.collect.*;
-
-import java.util.Map;
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.HashBasedTable;
+import com.google.common.collect.Multimap;
+import com.google.common.collect.Table;
 
 public class LocalCache {
 
     /**
      * 内存方式存储服务名称和服务实例
-     * key:serviceName, value:serviceInstance
+     * key:serviceName, value:serviceInstance.uri
      */
-    public static Multimap<String, String> appCache = ArrayListMultimap.create();
+    private Multimap<String, String> appCache = ArrayListMultimap.create();
 
     /**
      * 指标开关
      */
-    public static Table<String, String, Boolean> metricsCache = HashBasedTable.create();
+    private Table<String, String, Boolean> metricsCache = HashBasedTable.create();
 
-    static {
+    /**
+     * 设置收集周期
+     */
+    private long period = 30L;
+    /**
+     * 收集一次耗时
+     */
+    private long timeSpent = 0L;
+
+    private LocalCache() {
         for (Metrics metrics : Metrics.values()) {
             metricsCache.put(metrics.getTag(), metrics.getDescription(), metrics.isOpen());
         }
     }
 
-    /**
-     * 设置
-     */
-    public static Map<String, Long> settingCache = Maps.newHashMap();
+    public void setAppCache(Multimap<String, String> multimap) {
+        synchronized (appCache) {
+            this.appCache = multimap;
+        }
+    }
 
-    static {
-        settingCache.put("periodic", 30L);
+    public Multimap<String, String> getAppCache() {
+        return appCache;
+    }
+
+    public Table<String, String, Boolean> getMetricsCache() {
+        return metricsCache;
+    }
+
+    private static class LocalCacheHolder {
+        private static LocalCache instance = new LocalCache();
+    }
+
+    public static LocalCache getInstance() {
+        return LocalCacheHolder.instance;
+    }
+
+    public long getPeriod() {
+        return period;
+    }
+
+    public void setPeriod(long period) {
+        this.period = period;
+    }
+
+    public long getTimeSpent() {
+        return timeSpent;
+    }
+
+    public void setTimeSpent(long timeSpent) {
+        this.timeSpent = timeSpent;
     }
 }
